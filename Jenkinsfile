@@ -28,10 +28,5 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Clean up the Docker images after running the job
-            sh 'docker rmi $DOCKER_IMAGE || true'
-        }
-    }
+    
 }
