@@ -28,22 +28,23 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            emailext(
-                subject: "Pipeline Status: ${env.BUILD_NUMBER}",
-                body: '''<html>
-                            <body>
-                                <p>Build Status: ${currentBuild.currentResult}</p>
-                                <p>Build Number: ${env.BUILD_NUMBER}</p>
-                                <p>Check the <a href="${env.BUILD_URL}">console output</a>.</p>
-                            </body>
-                         </html>''',
-                to: 'ditiss790@gmail.com',
-                from: 'jenkins@example.com',
-                replyTo: 'jenkins@example.com',
-                mimeType: 'text/html'
-            )
-        }
+   post {
+    always {
+        emailext(
+            subject: "Pipeline Status: ${env.BUILD_NUMBER}",
+            body: '''<html>
+                        <body>
+                            <p>Build Status: ${currentBuild.currentResult}</p>
+                            <p>Build Number: ${env.BUILD_NUMBER}</p>
+                            <p>Check the <a href="${env.BUILD_URL}">console output</a>.</p>
+                        </body>
+                     </html>''',
+            to: 'ditiss790@gmail.com',
+            from: 'jenkins@example.com',
+            replyTo: 'jenkins@example.com',
+            mimeType: 'text/html'
+        )
     }
+}
+
 }
