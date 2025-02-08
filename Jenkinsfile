@@ -21,30 +21,29 @@ pipeline {
                 script {
                     // Run the Docker container and pass the target as an environment variable
                     sh """
-                        docker run --rm -e TARGET_HOST=${TARGET_HOST} $DOCKER_IMAGE
+                        docker run --rm -e TARGET_HOST=$TARGET_HOST $DOCKER_IMAGE
                     """
                 }
             }
         }
     }
 
-   post {
-    always {
-        emailext(
-            subject: "Pipeline Status: ${env.BUILD_NUMBER}",
-            body: '''<html>
-                        <body>
-                            <p>Build Status: ${currentBuild.currentResult}</p>
-                            <p>Build Number: ${env.BUILD_NUMBER}</p>
-                            <p>Check the <a href="${env.BUILD_URL}">console output</a>.</p>
-                        </body>
-                     </html>''',
-            to: 'ditiss790@gmail.com',
-            from: 'jenkins@example.com',
-            replyTo: 'jenkins@example.com',
-            mimeType: 'text/html'
-        )
+    post {
+        always {
+            emailext(
+                subject: "Pipeline Status: ${BUILD_NUMBER}",
+                body: '''<html>
+                            <body>
+                                <p>Build Status: ${BUILD_STATUS}</p>
+                                <p>Build Number: ${BUILD_NUMBER}</p>
+                                <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
+                            </body>
+                         </html>''',
+                to: 'ditiss790@gmail.com',
+                from: 'jenkins@example.com',
+                replyTo: 'jenkins@example.com',
+                mimeType: 'text/html'
+            )
+        }
     }
-}
-
 }
