@@ -39,7 +39,7 @@ pipeline {
                             <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
                         </body>
                     </html>''',
-            to: 'stylishn200@gmail.com',
+            to: 'techguynishant@gmail.com',
             from: 'jenkins@example.com',  // This will show as the sender
             replyTo: 'jenkins@example.com',  // Reply-to address
             mimeType: 'text/html'
